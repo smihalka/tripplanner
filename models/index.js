@@ -70,4 +70,3 @@ Restaurant.belongsTo(Place);
 Activity.belongsTo(Place);
 
 module.exports = db;
-
