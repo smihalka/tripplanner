@@ -1,5 +1,11 @@
+$base-color: blue;
+
 body {
   margin-top: 50px;
+}
+
+.navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand {
+  color: $base-color;
 }
 
 .map {

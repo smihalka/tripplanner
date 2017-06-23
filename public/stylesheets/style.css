@@ -1,6 +1,9 @@
 body {
   margin-top: 50px; }
 
+.navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand {
+  color: blue; }
+
 .map {
   background: gainsboro;
   width: 70%;
