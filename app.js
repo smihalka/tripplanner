@@ -25,6 +25,7 @@ app.engine('html', nunjucks.render);
 // static middleware
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
+app.use(express.static(path.join(__dirname, 'node_modules/jquery/dist')));
 
 // routing middleware
 app.use(require('./routes'));
