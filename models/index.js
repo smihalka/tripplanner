@@ -55,7 +55,7 @@ const Restaurant = db.define('restaurant', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    cusine: {
+    cuisine: {
         type: Sequelize.STRING,
         allowNull: false
     },
@@ -70,4 +70,3 @@ Restaurant.belongsTo(Place);
 Activity.belongsTo(Place);
 
 module.exports = db;
-
