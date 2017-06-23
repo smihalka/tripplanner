@@ -43,15 +43,15 @@ app.use((err, req, res, next) => {
 });
 
 
-db.sync({force: true})
+db.sync({})
 .then(function () {
-    return Place.sync({force: true});
+    return Place.sync({});
 }).then(function () {
-    return Hotel.sync({force: true});
+    return Hotel.sync({});
 }).then(function () {
-    return Activity.sync({force: true});
+    return Activity.sync({});
 }).then(function () {
-    return Restaurant.sync({force: true});
+    return Restaurant.sync({});
 })
   .then(() => {
     console.log('Database is sync`d');
