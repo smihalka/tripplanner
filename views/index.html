@@ -2,54 +2,57 @@
 {% block content %}
 
 
-<nav class="navbar navbar-inverse navbar-fixed-top nav">
-  	<div class="container">
-  		<div class="navbar-header">
-  			button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-  			        aria-expanded="false" aria-controls="navbar">
-  				<span class="sr-only">Toggle navigation</span>
-  				<span class="icon-bar"></span>
-  				<span class="icon-bar"></span>
-  				<span class="icon-bar"></span>
-  			</button>
-  			<a class="navbar-brand" href="#">Trip Planer</a>
-  		</div>
-  		<div id="navbar" class="collapse navbar-collapse">
-  			<ul class="nav navbar-nav">
-  				<li class="active"><a href="#">Home</a></li>
-  				<li><a href="#about">About</a></li>
-  				<li><a href="#contact">Contact</a></li>
-  			</ul>
-  		</div>&lt;!&ndash;/.nav-collapse &ndash;&gt;
-  	</div>
-  </nav>
+<div class="map">
+  <div id="map" style="height: 100%"></div>
+  <script>
+    var map;
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 40.7128, lng: -74.0059},
+        zoom: 16
+      });
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBc1agSBWitQ7l9xKozxmLijdCg3JiQkmY&callback=initMap"
+  async defer></script>
+</div>
 
+<div class="container choice">
+	<h2>Welcome to Trip Planner!</h2>
+	<form method="POST" action="#">
 
-<div class="map"></div>
+		<div class="form-group">
+			<label>Hotels:</label><br>
+			<select class="selectpicker" data-width="auto" data-style="btn-primary">
+				{%for hotel in hotels%}
+				<option value={{hotel.id}}>{{hotel.name}}</option>
+				{%endfor%}
+			</select>
+		</div>
 
-<div class="choice">
-	<h1>Welcome to Trip Planner!</h1>
-	<label for="hotel">Hotels:</label>
-	<select>
-		{%for hotel in hotels%}
-		<option name="hotel" value={{hotel.id}}>{{hotel.name}}</option>
-		{%endfor%}
-	</select>
-	<label for="restaurant">Restaurant:</label>
-	<select>
-		{%for restaurant in resturants%}
-		<option name="restaurant" value={{restaurant.id}}>{{restaurant.name}}</option>
-		{%endfor%}
-	</select>
-	<label for="activity">Activities</label>
-	<select>
-		{%for activity in activities%}
-		<option name="activity" value={{activity.id}}>{{activity.name}}</option>
-		{%endfor%}
-	</select>
+		<div class="form-group">
+			<label for="restaurant">Restaurant:</label><br>
+			<select class="selectpicker" data-width="auto" data-style="btn-primary">
+				{%for restaurant in resturants%}
+				<option name="restaurant" value={{restaurant.id}}>{{restaurant.name}}</option>
+				{%endfor%}
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label for="activity">Activities</label><br>
+			<select class="selectpicker" data-width="auto" data-style="btn-primary">
+				{%for activity in activities%}
+				<option name="activity" value={{activity.id}}>{{activity.name}}</option>
+				{%endfor%}
+			</select>
+		</div>
+
+	</form>
 </div>
 
 <div class="day">
+
 	<div class="nav_title_day">
 
 	</div>

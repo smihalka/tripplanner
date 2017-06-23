@@ -1,7 +1,8 @@
-.nav {
-  background: orangered;
-  width: 100%;
-  height: 40px; }
+body {
+  margin-top: 50px; }
+
+.navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand {
+  color: blue; }
 
 .navbar {
   width: 100%; }
