@@ -6,7 +6,10 @@ const volleyball = require('volleyball');
 const db = require('./models');
 const app = express();
 const PORT = 3000;
-
+var Place  = require('./models/place');
+var Hotel = require('./models/hotel');
+var Restaurant = require('./models/restaurant');
+var Activity = require('./models/activity');
 // logging middleware
 app.use(volleyball);
 
@@ -39,7 +42,17 @@ app.use((err, req, res, next) => {
   res.render('error', {err});
 })
 
-db.sync()
+
+db.sync({force: true})
+.then(function () {
+    return Place.sync({force: true})
+}).then(function () {
+    return Hotel.sync({force: true})
+}).then(function () {
+    return Activity.sync({force: true})
+}).then(function () {
+    return Restaurant.sync({force: true})
+})
   .then(() => {
     console.log('Database is sync`d');
     app.listen(PORT, () => console.log(`Listening intently on PORT: ${PORT}`));

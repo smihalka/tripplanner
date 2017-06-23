@@ -3,10 +3,10 @@
 
 var Promise = require('bluebird');
 var db = require('./models');
-var Place = db.Place; //require('./models/place');
-var Hotel = db.Hotel; //require('./models/hotel');
-var Restaurant = db.Restaurant;// require('./models/restaurant');
-var Activity = db.Activity;//require('./models/activity');
+var Place = require('./models/place');
+var Hotel = require('./models/hotel');
+var Restaurant = require('./models/restaurant');
+var Activity = require('./models/activity');
 
 var data = {
   hotels: [
@@ -83,6 +83,6 @@ db.sync({force: true})
   console.error('There was totally a problem', err, err.stack);
 })
 .finally(function () {
-  db.close(); // creates but does not return a promise
+db.close(); // creates but does not return a promise
   return null; // stops bluebird from complaining about un-returned promise
 });
