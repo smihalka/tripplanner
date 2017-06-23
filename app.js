@@ -3,10 +3,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const nunjucks = require('nunjucks');
 const volleyball = require('volleyball');
-const db = require('./models');
 const app = express();
-const PORT = 3000;
-
+const PORT = process.env.APP_SERVER_PORT || 3000;
+const db = require('./models');
+var Place  = require('./models/place');
+var Hotel = require('./models/hotel');
+var Restaurant = require('./models/restaurant');
+var Activity = require('./models/activity');
 // logging middleware
 app.use(volleyball);
 
@@ -30,17 +33,27 @@ app.use((req, res, next) => {
   const error = new Error('Not found');
   error.status = 404;
   next(error);
-})
+});
 
 // error handling "endware"
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(err.status || 500);
   res.render('error', {err});
-})
+});
 
-db.sync()
+
+db.sync({force: true})
+.then(function () {
+    return Place.sync({force: true});
+}).then(function () {
+    return Hotel.sync({force: true});
+}).then(function () {
+    return Activity.sync({force: true});
+}).then(function () {
+    return Restaurant.sync({force: true});
+})
   .then(() => {
     console.log('Database is sync`d');
     app.listen(PORT, () => console.log(`Listening intently on PORT: ${PORT}`));
-  })
+  });
