@@ -3,6 +3,9 @@
   width: 100%;
   height: 40px; }
 
+.navbar {
+  width: 100%; }
+
 .map {
   background: gainsboro;
   width: 70%;
